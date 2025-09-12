@@ -11,7 +11,7 @@ function addButtons()
 {
     for (let i = 0; i < BUTTON_QUANTITY; i++)
     {
-        const btnContainer = document.querySelector('.buttons-container');
+        const btnContainer = document.querySelector('#buttons-container');
         let calculatorBtn = document.createElement('button');
 
         calculatorBtn.setAttribute('value', `${BUTTON_VALUES[i]}`);
