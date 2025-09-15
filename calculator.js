@@ -43,21 +43,25 @@ function divide(num1, num2)
 
 function operate(num1, num2, operator)
 {
+    let result = 0;
+
     switch (operator)
     {
         case '+':
-            add(num1, num2);
+            result = add(num1, num2);
             break;
         case '-':
-            substract(num1, num2);
+            result = substract(num1, num2);
             break;
         case 'x':
-            multiply(num1, num2);
+            result = multiply(num1, num2);
             break;
         case '÷':
-            divide(num1, num2);
+            result = divide(num1, num2);
             break;
     }
+
+    return result;
 }
 
 addButtons();
@@ -68,7 +72,8 @@ const calculatorScreen = document.querySelector('#screen');
 let screenContent = '';
 let firstNumber = 0;
 let secondNumber = 0;
-let calcOperator;
+let timesOperatorUsed = 0;
+let calcOperator = '';
 
 for (let calculatorBtn of calculatorBtns)
 {
@@ -78,15 +83,32 @@ for (let calculatorBtn of calculatorBtns)
         
         if (isNaN(btnRealValue))
         {
-            console.log("aaa");
-            screenContent = '0';
+            timesOperatorUsed++;
+
+            switch (timesOperatorUsed)
+            {
+                case 1:
+                    firstNumber = parseInt(screenContent);
+                    screenContent = '0';
+                    break;
+                case 2:
+                    secondNumber = parseInt(screenContent);
+                    firstNumber = operate(firstNumber, secondNumber, calcOperator)
+                    screenContent = firstNumber;
+                    break;
+                default:
+                    break;
+            }
+            
+            console.log(timesOperatorUsed);
+            calcOperator = btnStoredValue;
         }
         else
         {
             if (screenContent === '0') screenContent = '';
             screenContent += btnStoredValue;
         }
-        console.log(btnRealValue);
+
         calculatorScreen.textContent = screenContent;
     });
 }
