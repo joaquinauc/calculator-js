@@ -61,3 +61,32 @@ function operate(num1, num2, operator)
 }
 
 addButtons();
+
+const calculatorBtns = document.querySelectorAll('button');
+const calculatorScreen = document.querySelector('#screen');
+
+let screenContent = '';
+let firstNumber = 0;
+let secondNumber = 0;
+let calcOperator;
+
+for (let calculatorBtn of calculatorBtns)
+{
+    calculatorBtn.addEventListener('click', () => {
+        const btnStoredValue = calculatorBtn.getAttribute('value');
+        const btnRealValue = parseInt(btnStoredValue);
+        
+        if (isNaN(btnRealValue))
+        {
+            console.log("aaa");
+            screenContent = '0';
+        }
+        else
+        {
+            if (screenContent === '0') screenContent = '';
+            screenContent += btnStoredValue;
+        }
+        console.log(btnRealValue);
+        calculatorScreen.textContent = screenContent;
+    });
+}
