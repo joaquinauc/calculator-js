@@ -61,7 +61,7 @@ function operate(num1, num2, operator)
             break;
     }
 
-    return parseFloat(result.toFixed(2));
+    return parseFloat(result.toFixed(5));
 }
 
 addButtons();
