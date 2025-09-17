@@ -96,6 +96,7 @@ for (let calculatorBtn of calculatorBtns)
                     break;
                 default:
                     let numberOnScreen = '0';
+                    dotBtnPressed = false;
 
                     if (!opBtnPressed)
                     {
@@ -120,7 +121,6 @@ for (let calculatorBtn of calculatorBtns)
         else
         {
             if (screenContent === '0' || (opBtnPressed && !dotBtnPressed)) screenContent = '';
-            dotBtnPressed = false;
             screenContent += btnStoredValue;
         }
 
