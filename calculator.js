@@ -74,6 +74,7 @@ let firstNumber = 0;
 let secondNumber = 0;
 let timesOperatorUsed = 0;
 let calcOperator = '';
+let btnPressed = false;
 
 for (let calculatorBtn of calculatorBtns)
 {
@@ -83,29 +84,34 @@ for (let calculatorBtn of calculatorBtns)
         
         if (isNaN(btnRealValue))
         {
+            let numberOnScreen = '0';
+
             timesOperatorUsed++;
 
             switch (timesOperatorUsed)
             {
                 case 1:
                     firstNumber = parseInt(screenContent);
-                    screenContent = '0';
+                    numberOnScreen = firstNumber;
+                    screenContent = numberOnScreen;
+                    btnPressed = true;
                     break;
                 case 2:
                     secondNumber = parseInt(screenContent);
                     firstNumber = operate(firstNumber, secondNumber, calcOperator)
-                    screenContent = firstNumber;
+                    numberOnScreen = firstNumber;
+                    screenContent = numberOnScreen;
+                    timesOperatorUsed = 1;
                     break;
                 default:
                     break;
             }
             
-            console.log(timesOperatorUsed);
             calcOperator = btnStoredValue;
         }
         else
         {
-            if (screenContent === '0') screenContent = '';
+            if (screenContent === '0' || btnPressed) screenContent = '';
             screenContent += btnStoredValue;
         }
 
