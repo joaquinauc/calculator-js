@@ -96,7 +96,7 @@ for (let calculatorBtn of calculatorBtns)
                     dotBtnPressed = true;
                     break;
                 case '=':
-                    if (!equalBtnPressed)
+                    if (!equalBtnPressed && opBtnPressed)
                     {
                         secondNumber = parseFloat(screenContent);
                         result = operate(firstNumber, secondNumber, calcOperator)
