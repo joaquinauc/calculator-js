@@ -70,13 +70,16 @@ const calculatorBtns = document.querySelectorAll('button');
 const calculatorScreen = document.querySelector('#screen');
 
 let screenContent = '';
+let calcOperator = '';
+let numberOnScreen = '';
 let firstNumber = 0;
 let secondNumber = 0;
 let result = 0;
 let timesOperatorUsed = 0;
-let calcOperator = '';
 let opBtnPressed = false;
 let dotBtnPressed = false;
+let numBtnPressed = false;
+let equalBtnPressed = false;
 
 for (let calculatorBtn of calculatorBtns)
 {
@@ -89,13 +92,22 @@ for (let calculatorBtn of calculatorBtns)
             switch (btnStoredValue)
             {
                 case '.':
-                    screenContent += btnStoredValue;
+                    if (!screenContent.includes('.')) screenContent += btnStoredValue;
                     dotBtnPressed = true;
                     break;
                 case '=':
+                    if (!equalBtnPressed)
+                    {
+                        secondNumber = parseFloat(screenContent);
+                        result = operate(firstNumber, secondNumber, calcOperator)
+                        numberOnScreen = result;
+                        screenContent = numberOnScreen;
+                        opBtnPressed = false;
+                        equalBtnPressed = true;
+                    }
                     break;
                 default:
-                    let numberOnScreen = '0';
+                    numberOnScreen = '0';
                     dotBtnPressed = false;
 
                     if (!opBtnPressed)
@@ -103,15 +115,17 @@ for (let calculatorBtn of calculatorBtns)
                         firstNumber = parseFloat(screenContent);
                         numberOnScreen = firstNumber;
                         screenContent = numberOnScreen;
-                        opBtnPressed = true; 
+                        opBtnPressed = true;
+                        equalBtnPressed = false;
                     }
-                    else
+                    else if (opBtnPressed && numBtnPressed)
                     {
                         secondNumber = parseFloat(screenContent);
                         result = operate(firstNumber, secondNumber, calcOperator)
                         numberOnScreen = result;
                         screenContent = numberOnScreen;
                         firstNumber = result;
+                        numBtnPressed = false;
                     }
 
                     calcOperator = btnStoredValue;
@@ -120,8 +134,10 @@ for (let calculatorBtn of calculatorBtns)
         }
         else
         {
-            if (screenContent === '0' || (opBtnPressed && !dotBtnPressed)) screenContent = '';
+            if (screenContent === '0' || (opBtnPressed && !dotBtnPressed) || equalBtnPressed) screenContent = '';
+            equalBtnPressed = false;
             screenContent += btnStoredValue;
+            numBtnPressed = true;
         }
 
         calculatorScreen.textContent = screenContent;
