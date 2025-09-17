@@ -80,6 +80,7 @@ let opBtnPressed = false;
 let dotBtnPressed = false;
 let numBtnPressed = false;
 let equalBtnPressed = false;
+let flagSecondOp = false; // Without it, when trying to enter more than one digit after entering the first number, it won't let you, the number will keep being replaced.
 
 for (let calculatorBtn of calculatorBtns)
 {
@@ -96,6 +97,8 @@ for (let calculatorBtn of calculatorBtns)
                     dotBtnPressed = true;
                     break;
                 case '=':
+                    if (screenContent === '') screenContent = '0';
+
                     if (!equalBtnPressed && opBtnPressed)
                     {
                         secondNumber = parseFloat(screenContent);
@@ -109,10 +112,18 @@ for (let calculatorBtn of calculatorBtns)
                 default:
                     numberOnScreen = '0';
                     dotBtnPressed = false;
+                    flagSecondOp = true;
 
                     if (!opBtnPressed)
                     {
                         firstNumber = parseFloat(screenContent);
+                        
+                        if (isNaN(firstNumber))
+                        {
+                            screenContent = '0';
+                            break;
+                        }
+
                         numberOnScreen = firstNumber;
                         screenContent = numberOnScreen;
                         opBtnPressed = true;
@@ -134,10 +145,11 @@ for (let calculatorBtn of calculatorBtns)
         }
         else
         {
-            if (screenContent === '0' || (opBtnPressed && !dotBtnPressed) || equalBtnPressed) screenContent = '';
+            if (screenContent === '0' || (opBtnPressed && !dotBtnPressed && flagSecondOp) || equalBtnPressed) screenContent = '';
             equalBtnPressed = false;
             screenContent += btnStoredValue;
             numBtnPressed = true;
+            flagSecondOp = false;
         }
 
         calculatorScreen.textContent = screenContent;
