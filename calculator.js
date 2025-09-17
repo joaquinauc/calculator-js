@@ -75,37 +75,38 @@ let secondNumber = 0;
 let result = 0;
 let timesOperatorUsed = 0;
 let calcOperator = '';
-let btnPressed = false;
+let opBtnPressed = false;
+let dotBtnPressed = false;
 
 for (let calculatorBtn of calculatorBtns)
 {
     calculatorBtn.addEventListener('click', () => {
         const btnStoredValue = calculatorBtn.getAttribute('value');
-        const btnRealValue = parseInt(btnStoredValue);
+        const btnRealValue = parseFloat(btnStoredValue);
         
         if (isNaN(btnRealValue))
         {
             switch (btnStoredValue)
             {
                 case '.':
+                    screenContent += btnStoredValue;
+                    dotBtnPressed = true;
                     break;
                 case '=':
                     break;
                 default:
                     let numberOnScreen = '0';
 
-                    console.log("Pressed =");
-
-                    if (!btnPressed)
+                    if (!opBtnPressed)
                     {
-                        firstNumber = parseInt(screenContent);
+                        firstNumber = parseFloat(screenContent);
                         numberOnScreen = firstNumber;
                         screenContent = numberOnScreen;
-                        btnPressed = true; 
+                        opBtnPressed = true; 
                     }
                     else
                     {
-                        secondNumber = parseInt(screenContent);
+                        secondNumber = parseFloat(screenContent);
                         result = operate(firstNumber, secondNumber, calcOperator)
                         numberOnScreen = result;
                         screenContent = numberOnScreen;
@@ -118,7 +119,8 @@ for (let calculatorBtn of calculatorBtns)
         }
         else
         {
-            if (screenContent === '0' || btnPressed) screenContent = '';
+            if (screenContent === '0' || (opBtnPressed && !dotBtnPressed)) screenContent = '';
+            dotBtnPressed = false;
             screenContent += btnStoredValue;
         }
 
