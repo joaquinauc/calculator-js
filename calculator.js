@@ -85,8 +85,6 @@ for (let calculatorBtn of calculatorBtns)
         
         if (isNaN(btnRealValue))
         {
-            let numberOnScreen = '0';
-
             switch (btnStoredValue)
             {
                 case '.':
@@ -94,9 +92,13 @@ for (let calculatorBtn of calculatorBtns)
                 case '=':
                     break;
                 default:
+                    let numberOnScreen = '0';
+
+                    console.log("Pressed =");
+
                     if (!btnPressed)
                     {
-                       firstNumber = parseInt(screenContent);
+                        firstNumber = parseInt(screenContent);
                         numberOnScreen = firstNumber;
                         screenContent = numberOnScreen;
                         btnPressed = true; 
@@ -109,10 +111,10 @@ for (let calculatorBtn of calculatorBtns)
                         screenContent = numberOnScreen;
                         firstNumber = result;
                     }
+
+                    calcOperator = btnStoredValue;
                     break;
             }
-            
-            calcOperator = btnStoredValue;
         }
         else
         {
