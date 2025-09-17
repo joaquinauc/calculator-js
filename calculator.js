@@ -87,25 +87,28 @@ for (let calculatorBtn of calculatorBtns)
         {
             let numberOnScreen = '0';
 
-            timesOperatorUsed++;
-
-            switch (timesOperatorUsed)
+            switch (btnStoredValue)
             {
-                case 1:
-                    firstNumber = parseInt(screenContent);
-                    numberOnScreen = firstNumber;
-                    screenContent = numberOnScreen;
-                    btnPressed = true;
+                case '.':
                     break;
-                case 2:
-                    secondNumber = parseInt(screenContent);
-                    result = operate(firstNumber, secondNumber, calcOperator)
-                    numberOnScreen = result;
-                    screenContent = numberOnScreen;
-                    timesOperatorUsed = 1;
-                    firstNumber = result;
+                case '=':
                     break;
                 default:
+                    if (!btnPressed)
+                    {
+                       firstNumber = parseInt(screenContent);
+                        numberOnScreen = firstNumber;
+                        screenContent = numberOnScreen;
+                        btnPressed = true; 
+                    }
+                    else
+                    {
+                        secondNumber = parseInt(screenContent);
+                        result = operate(firstNumber, secondNumber, calcOperator)
+                        numberOnScreen = result;
+                        screenContent = numberOnScreen;
+                        firstNumber = result;
+                    }
                     break;
             }
             
