@@ -72,6 +72,7 @@ const calculatorScreen = document.querySelector('#screen');
 let screenContent = '';
 let firstNumber = 0;
 let secondNumber = 0;
+let result = 0;
 let timesOperatorUsed = 0;
 let calcOperator = '';
 let btnPressed = false;
@@ -98,10 +99,11 @@ for (let calculatorBtn of calculatorBtns)
                     break;
                 case 2:
                     secondNumber = parseInt(screenContent);
-                    firstNumber = operate(firstNumber, secondNumber, calcOperator)
-                    numberOnScreen = firstNumber;
+                    result = operate(firstNumber, secondNumber, calcOperator)
+                    numberOnScreen = result;
                     screenContent = numberOnScreen;
                     timesOperatorUsed = 1;
+                    firstNumber = result;
                     break;
                 default:
                     break;
