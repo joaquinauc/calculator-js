@@ -72,6 +72,7 @@ const calculatorScreen = document.querySelector('#screen');
 let screenContent = '';
 let calcOperator = '';
 let numberOnScreen = '';
+let numberOffScreen = '';
 let firstNumber = 0;
 let secondNumber = 0;
 let result = 0;
@@ -129,7 +130,7 @@ for (let calculatorBtn of calculatorBtns)
                         opBtnPressed = true;
                         equalBtnPressed = false;
                     }
-                    else if (opBtnPressed && numBtnPressed)
+                    else if (opBtnPressed && numBtnPressed && (numberOffScreen !== ''))
                     {
                         secondNumber = parseFloat(screenContent);
                         result = operate(firstNumber, secondNumber, calcOperator)
@@ -139,6 +140,7 @@ for (let calculatorBtn of calculatorBtns)
                         numBtnPressed = false;
                     }
 
+                    numberOffScreen = '';
                     calcOperator = btnStoredValue;
                     break;
             }
@@ -148,8 +150,10 @@ for (let calculatorBtn of calculatorBtns)
             if (screenContent === '0' || (opBtnPressed && !dotBtnPressed && flagSecondOp) || equalBtnPressed) screenContent = '';
             equalBtnPressed = false;
             screenContent += btnStoredValue;
+            numberOffScreen += btnStoredValue;
             numBtnPressed = true;
             flagSecondOp = false;
+
         }
 
         calculatorScreen.textContent = screenContent;
