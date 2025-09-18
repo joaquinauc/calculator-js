@@ -87,6 +87,7 @@ function clearEverything() {
     flagSecondNumber = false;
 
     calculatorScreenNumber.textContent = '0';
+    calculatorScreenOperator.textContent = '';
 }
 
 function deleteLastEntry() {
@@ -119,9 +120,13 @@ function calculatorButtonsFunctionality(btnStoredValue) {
                     screenContent = numberOnScreen;
                     opBtnPressed = false;
                     equalBtnPressed = true;
+
+                    calculatorScreenOperator.textContent = '';
                 }
                 break;
             default:
+                calculatorScreenOperator.textContent = btnStoredValue;
+
                 if (equalBtnPressed) clearEverything();
 
                 numberOnScreen = '0';
@@ -174,6 +179,7 @@ addButtons();
 
 const calculatorBtns = document.querySelectorAll('.calculator-btn');
 const calculatorScreenNumber = document.querySelector('#screen-number');
+const calculatorScreenOperator = document.querySelector('#screen-operator');
 const clearBtn = document.querySelector('#clear-button');
 const backspaceBtn = document.querySelector('#backspace-button');
 
