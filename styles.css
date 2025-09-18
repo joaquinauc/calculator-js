@@ -37,14 +37,18 @@ body {
     row-gap: 20px;
 }
 
-#screen {
+#screen-container {
     display: flex;
-    justify-content: end;
+    justify-content: space-between;
     border-radius: 10px;
     font-size: 56px;
     padding: 0px 15px;
     background-color: #BBD0BF;
     font-family: "Phudu", sans-serif;
+}
+
+#screen-operator {
+    font-size: 24px;
 }
 
 button {
