@@ -132,7 +132,7 @@ function calculatorButtonsFunctionality(btnStoredValue) {
                     firstNumber = parseFloat(screenContent);
 
                     if (isNaN(firstNumber)) {
-                        screenContent = '0';
+                        calculatorScreen.textContent = '0';
                         break;
                     }
 
