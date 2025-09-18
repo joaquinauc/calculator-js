@@ -94,6 +94,8 @@ function clearEverything()
     numBtnPressed = false;
     equalBtnPressed = false;
     flagSecondNumber = false;
+
+    calculatorScreen.textContent = '0';
 }
 
 function deleteLastEntry() {
