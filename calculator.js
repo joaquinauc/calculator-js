@@ -205,6 +205,7 @@ document.addEventListener('keydown', event => {
         case '/':
         case '+':
         case '-':
+        case '.':
         case 'Enter':
             if (event.key === '*') btnStoredValue = 'x';
             else if (event.key === '/') btnStoredValue = '÷';
