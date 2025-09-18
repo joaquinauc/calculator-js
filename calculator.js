@@ -173,7 +173,7 @@ function calculatorButtonsFunctionality(btnStoredValue) {
 addButtons();
 
 const calculatorBtns = document.querySelectorAll('.calculator-btn');
-const calculatorScreenNumber = document.querySelector('#screen');
+const calculatorScreenNumber = document.querySelector('#screen-number');
 const clearBtn = document.querySelector('#clear-button');
 const backspaceBtn = document.querySelector('#backspace-button');
 
