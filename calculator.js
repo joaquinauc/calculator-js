@@ -27,6 +27,7 @@ function addButtons()
     {
         const btnContainer = document.querySelector('#buttons-container');
         let calculatorBtn = document.createElement('button');
+        calculatorBtn.setAttribute('class', 'calculator-btn');
 
         calculatorBtn.setAttribute('value', `${BUTTON_VALUES[i]}`);
         calculatorBtn.textContent = BUTTON_VALUES[i];
@@ -99,13 +100,18 @@ function deleteLastEntry() {
     let screenContentArray = screenContent.split('');
     screenContentArray.pop();
     screenContent = screenContentArray.join('');
+
+    if (screenContent === '') screenContent = '0';
+
     numberOnScreen = screenContent;
     numberOffScreen = screenContent;
+
+    calculatorScreen.textContent = screenContent;
 }
 
 addButtons();
 
-const calculatorBtns = document.querySelectorAll('button');
+const calculatorBtns = document.querySelectorAll('.calculator-btn');
 const calculatorScreen = document.querySelector('#screen');
 const clearBtn = document.querySelector('#clear-button');
 const backspaceBtn = document.querySelector('#backspace-button');
