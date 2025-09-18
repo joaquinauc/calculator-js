@@ -7,6 +7,20 @@ const BUTTON_VALUES =
     '0', '.', '+', '='
 ];
 
+let screenContent = '';
+let calcOperator = '';
+let numberOnScreen = '';
+let numberOffScreen = '';
+let firstNumber = 0;
+let secondNumber = 0;
+let result = 0;
+let timesOperatorUsed = 0;
+let opBtnPressed = false;
+let dotBtnPressed = false;
+let numBtnPressed = false;
+let equalBtnPressed = false;
+let flagSecondNumber = false; // Without it, when trying to enter more than one digit after entering the first number, it won't let you, the number will keep being replaced.
+
 function addButtons()
 {
     for (let i = 0; i < BUTTON_QUANTITY; i++)
@@ -85,20 +99,6 @@ addButtons();
 
 const calculatorBtns = document.querySelectorAll('button');
 const calculatorScreen = document.querySelector('#screen');
-
-let screenContent = '';
-let calcOperator = '';
-let numberOnScreen = '';
-let numberOffScreen = '';
-let firstNumber = 0;
-let secondNumber = 0;
-let result = 0;
-let timesOperatorUsed = 0;
-let opBtnPressed = false;
-let dotBtnPressed = false;
-let numBtnPressed = false;
-let equalBtnPressed = false;
-let flagSecondNumber = false; // Without it, when trying to enter more than one digit after entering the first number, it won't let you, the number will keep being replaced.
 
 for (let calculatorBtn of calculatorBtns)
 {
