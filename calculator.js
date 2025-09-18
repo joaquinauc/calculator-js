@@ -122,6 +122,8 @@ function calculatorButtonsFunctionality(btnStoredValue) {
                 }
                 break;
             default:
+                if (equalBtnPressed) clearEverything();
+
                 numberOnScreen = '0';
                 dotBtnPressed = false;
                 flagSecondNumber = true;
