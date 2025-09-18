@@ -99,6 +99,10 @@ addButtons();
 
 const calculatorBtns = document.querySelectorAll('button');
 const calculatorScreen = document.querySelector('#screen');
+const clearBtn = document.querySelector('#clear-button');
+const backspaceBtn = document.querySelector('#backspace-button');
+
+clearBtn.addEventListener('click', clearEverything);
 
 for (let calculatorBtn of calculatorBtns)
 {
