@@ -95,6 +95,14 @@ function clearEverything()
     flagSecondNumber = false;
 }
 
+function deleteLastEntry() {
+    let screenContentArray = screenContent.split('');
+    screenContentArray.pop();
+    screenContent = screenContentArray.join('');
+    numberOnScreen = screenContent;
+    numberOffScreen = screenContent;
+}
+
 addButtons();
 
 const calculatorBtns = document.querySelectorAll('button');
@@ -103,6 +111,7 @@ const clearBtn = document.querySelector('#clear-button');
 const backspaceBtn = document.querySelector('#backspace-button');
 
 clearBtn.addEventListener('click', clearEverything);
+backspaceBtn.addEventListener('click', deleteLastEntry);
 
 for (let calculatorBtn of calculatorBtns)
 {
