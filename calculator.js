@@ -86,7 +86,7 @@ function clearEverything() {
     equalBtnPressed = false;
     flagSecondNumber = false;
 
-    calculatorScreen.textContent = '0';
+    calculatorScreenNumber.textContent = '0';
 }
 
 function deleteLastEntry() {
@@ -99,7 +99,7 @@ function deleteLastEntry() {
     numberOnScreen = screenContent;
     numberOffScreen = screenContent;
 
-    calculatorScreen.textContent = screenContent;
+    calculatorScreenNumber.textContent = screenContent;
 }
 
 function calculatorButtonsFunctionality(btnStoredValue) {
@@ -132,7 +132,7 @@ function calculatorButtonsFunctionality(btnStoredValue) {
                     firstNumber = parseFloat(screenContent);
 
                     if (isNaN(firstNumber)) {
-                        calculatorScreen.textContent = '0';
+                        calculatorScreenNumber.textContent = '0';
                         break;
                     }
 
@@ -165,15 +165,15 @@ function calculatorButtonsFunctionality(btnStoredValue) {
     }
 
     if (screenContent == '')
-        calculatorScreen.textContent = '0';
+        calculatorScreenNumber.textContent = '0';
     else
-        calculatorScreen.textContent = screenContent;
+        calculatorScreenNumber.textContent = screenContent;
 }
 
 addButtons();
 
 const calculatorBtns = document.querySelectorAll('.calculator-btn');
-const calculatorScreen = document.querySelector('#screen');
+const calculatorScreenNumber = document.querySelector('#screen');
 const clearBtn = document.querySelector('#clear-button');
 const backspaceBtn = document.querySelector('#backspace-button');
 
