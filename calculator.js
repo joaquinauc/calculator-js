@@ -64,6 +64,23 @@ function operate(num1, num2, operator)
     return parseFloat(result.toFixed(5));
 }
 
+function clearEverything()
+{
+    screenContent = '';
+    calcOperator = '';
+    numberOnScreen = '';
+    numberOffScreen = '';
+    firstNumber = 0;
+    secondNumber = 0;
+    result = 0;
+    timesOperatorUsed = 0;
+    opBtnPressed = false;
+    dotBtnPressed = false;
+    numBtnPressed = false;
+    equalBtnPressed = false;
+    flagSecondNumber = false;
+}
+
 addButtons();
 
 const calculatorBtns = document.querySelectorAll('button');
@@ -101,7 +118,7 @@ for (let calculatorBtn of calculatorBtns)
                     if (!equalBtnPressed && opBtnPressed && (numberOffScreen !== ''))
                     {
                         secondNumber = parseFloat(screenContent);
-                        result = operate(firstNumber, secondNumber, calcOperator)
+                        result = operate(firstNumber, secondNumber, calcOperator);
                         numberOnScreen = result;
                         screenContent = numberOnScreen;
                         opBtnPressed = false;
@@ -131,7 +148,7 @@ for (let calculatorBtn of calculatorBtns)
                     else if (opBtnPressed && numBtnPressed && (numberOffScreen !== ''))
                     {
                         secondNumber = parseFloat(screenContent);
-                        result = operate(firstNumber, secondNumber, calcOperator)
+                        result = operate(firstNumber, secondNumber, calcOperator);
                         numberOnScreen = result;
                         screenContent = numberOnScreen;
                         firstNumber = result;
@@ -157,7 +174,6 @@ for (let calculatorBtn of calculatorBtns)
             calculatorScreen.textContent = '0';
         else
             calculatorScreen.textContent = screenContent;
-        
-        
     });
 }
+
