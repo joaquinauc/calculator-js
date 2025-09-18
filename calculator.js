@@ -98,8 +98,6 @@ for (let calculatorBtn of calculatorBtns)
                     dotBtnPressed = true;
                     break;
                 case '=':
-                    if (screenContent === '') screenContent = '0';
-
                     if (!equalBtnPressed && opBtnPressed)
                     {
                         secondNumber = parseFloat(screenContent);
@@ -153,9 +151,13 @@ for (let calculatorBtn of calculatorBtns)
             numberOffScreen += btnStoredValue;
             numBtnPressed = true;
             flagSecondNumber = false;
-
         }
 
-        calculatorScreen.textContent = screenContent;
+        if (screenContent == '')
+            calculatorScreen.textContent = '0';
+        else
+            calculatorScreen.textContent = screenContent;
+        
+        
     });
 }
