@@ -187,3 +187,38 @@ for (let calculatorBtn of calculatorBtns) {
     });
 }
 
+document.addEventListener('keydown', event => {
+    let btnStoredValue = event.key;
+
+    switch (event.key) {
+        case '0':
+        case '1':
+        case '2':
+        case '3':
+        case '4':
+        case '5':
+        case '6':
+        case '7':
+        case '8':
+        case '9':
+        case '*':
+        case '/':
+        case '+':
+        case '-':
+        case 'Enter':
+            if (event.key === '*') btnStoredValue = 'x';
+            else if (event.key === '/') btnStoredValue = '÷';
+            else if (event.key === 'Enter') btnStoredValue = '=';
+
+            calculatorButtonsFunctionality(btnStoredValue);
+            break;
+        case 'Escape':
+            clearEverything();
+            break;
+        case 'Backspace':
+            deleteLastEntry();
+            break;
+        default:
+            break;
+    }
+});
